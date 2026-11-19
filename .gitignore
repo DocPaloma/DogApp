@@ -13,3 +13,7 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# Documentación y contexto privado (no subir a GitHub)
+STUDY_DEFENSE_GUIDE.md
+.contexto/
