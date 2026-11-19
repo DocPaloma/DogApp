@@ -55,6 +55,12 @@ dependencies {
     implementation(libs.retrofit.converter.gson)
     implementation(libs.okhttp.logging)
     testImplementation(libs.junit)
+    implementation("com.airbnb.android:lottie:6.6.2")
+    implementation("androidx.biometric:biometric:1.1.0")
+    val navVersion = "2.8.5"
+    implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
+    implementation("androidx.navigation:navigation-ui-ktx:$navVersion")
+    implementation("io.coil-kt:coil:2.7.0")
     testImplementation(libs.kotlinx.coroutines.test)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
