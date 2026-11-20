@@ -57,7 +57,7 @@ com.example.dogapp/
 │   │       └── DogImageResponse.kt
 │   └── repository/
 │       └── AppointmentRepository.kt
-├── ui/
+├── view/
 │   ├── login/
 │   │   └── LoginFragment.kt
 │   ├── home/
