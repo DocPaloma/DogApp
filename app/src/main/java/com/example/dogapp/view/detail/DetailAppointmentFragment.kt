@@ -9,20 +9,13 @@ import com.example.dogapp.databinding.FragmentDetailAppointmentBinding
 
 class DetailAppointmentFragment : Fragment() {
 
-    private var _binding: FragmentDetailAppointmentBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentDetailAppointmentBinding
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentDetailAppointmentBinding.inflate(inflater, container, false)
+        binding = FragmentDetailAppointmentBinding.inflate(inflater, container, false)
         return binding.root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }
