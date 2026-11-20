@@ -20,7 +20,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent="0.72"
-        tools:src="@drawable/ic_dog_head_placeholder" />
+        tools:src="@drawable/ic_dog_head" />
 
     <!-- Título centrado debajo de la imagen en blanco bold -->
     <TextView
@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:fontFamily="@font/"
+        android:fontFamily="@font/fredoka-bold"
         android:text="@string/app_title_login"
         android:textColor="@android:color/white"
         android:textSize="36sp"
