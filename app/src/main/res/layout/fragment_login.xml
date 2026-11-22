@@ -6,7 +6,7 @@
     android:id="@+id/loginRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#262F34"
+    android:background="@color/dark_gray"
     tools:context=".view.login.LoginFragment">
 
     <!-- Imagen superior derecha: cabeza de perro con fondo transparente -->

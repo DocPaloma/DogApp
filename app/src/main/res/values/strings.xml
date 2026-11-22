@@ -3,5 +3,11 @@
     <string name="cd_dog_login">Imagen de perro en login</string>
     <string name="app_title_login">DogApp</string>
     <string name="header_title">Administrador\nde citas</string>
-
+    <string name="new_cita_title">Nueva Cita</string>
+    <string name="hint_name">Nombre de la mascota</string>
+    <string name="hint_owner_name">Nombre del propietario</string>
+    <string name="hint_symptoms">Síntomas</string>
+    <string name="hint_phone">Número de teléfono</string>
+    <string name="hint_race">Raza</string>
+    <string name="save_cita">Guardar Cita</string>
 </resources>
