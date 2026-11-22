@@ -2,4 +2,6 @@
     <string name="app_name">DogApp</string>
     <string name="cd_dog_login">Imagen de perro en login</string>
     <string name="app_title_login">DogApp</string>
+    <string name="header_title">Administrador\nde citas</string>
+
 </resources>
