@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardCita"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="12dp"
+    android:layout_marginTop="6dp"
+    android:layout_marginEnd="12dp"
+    android:layout_marginBottom="6dp"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardBackgroundColor="@android:color/white"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="3dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="14dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="14dp"
+        android:paddingBottom="12dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivFotoMascota"
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            android:contentDescription="Foto de la mascota"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
+            tools:src="@tools:sample/avatars"/>
+
+        <TextView
+            android:id="@+id/tvNombreMascota"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/fredoka_regular"
+            android:maxLines="1"
+            android:textColor="@color/gray_222"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@id/tvNumeroCita"
+            app:layout_constraintStart_toEndOf="@id/ivFotoMascota"
+            app:layout_constraintTop_toTopOf="@id/ivFotoMascota"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Max"/>
+
+        <TextView
+            android:id="@+id/tvMotivoCita"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/fredoka_regular"
+            android:maxLines="2"
+            android:textColor="@color/gray_555"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/ivFotoMascota"
+            app:layout_constraintEnd_toEndOf="@id/tvNombreMascota"
+            app:layout_constraintStart_toStartOf="@id/tvNombreMascota"
+            app:layout_constraintTop_toBottomOf="@id/tvNombreMascota"
+            tools:text="Fractura extremidad" />
+
+        <TextView
+            android:id="@+id/tvNumeroCita"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red_d94"
+            android:fontFamily="@font/fredoka_regular"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="1"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

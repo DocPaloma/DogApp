@@ -10,4 +10,9 @@
     <color name="dog_dark_gray">#FF262F34</color>
     <color name="dog_pink">#FFF05861</color>
     <color name="dog_dark_blue">#FF1A237E</color>
+    <color name="gray_222">#222222</color>
+    <color name="gray_555">#555555</color>
+    <color name="red_d94">#D94A4A</color>
+    <color name="pink">#F05861</color>
+    <color name="dark_gray">#262F34</color>
 </resources>
