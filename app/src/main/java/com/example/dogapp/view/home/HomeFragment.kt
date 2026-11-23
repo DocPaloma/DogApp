@@ -6,6 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.example.dogapp.R
+import com.example.dogapp.data.local.AppointmentEntity
 import com.example.dogapp.databinding.FragmentHomeCitasBinding
 
 class HomeFragment : Fragment() {
@@ -14,7 +17,9 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: HomeViewModel by viewModels()
-    private val appointmentAdapter = AppointmentAdapter()
+    private val appointmentAdapter = AppointmentAdapter { appointment ->
+        navigateToDetail(appointment)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,9 +35,27 @@ class HomeFragment : Fragment() {
 
         binding.rvCitas.adapter = appointmentAdapter
 
+        setupListeners()
+        observeViewModel()
+    }
+
+    private fun setupListeners() {
+        binding.fabAgregarCita.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_newAppointmentFragment)
+        }
+    }
+
+    private fun observeViewModel() {
         viewModel.appointments.observe(viewLifecycleOwner) { appointments ->
             appointmentAdapter.submitList(appointments)
         }
+    }
+
+    private fun navigateToDetail(appointment: AppointmentEntity) {
+        val bundle = Bundle().apply {
+            putSerializable("appointment", appointment)
+        }
+        findNavController().navigate(R.id.action_homeFragment_to_detailAppointmentFragment, bundle)
     }
 
     override fun onDestroyView() {
