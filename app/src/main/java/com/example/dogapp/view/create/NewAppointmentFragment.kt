@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -43,7 +44,7 @@ class NewAppointmentFragment : Fragment() {
             val breed = binding.etRace.text?.toString().orEmpty().trim()
             val ownerName = binding.etNombrePropietario.text?.toString().orEmpty().trim()
             val phone = binding.etPhone.text?.toString().orEmpty().trim()
-            val symptom = binding.actSymptoms.text?.toString().orEmpty().trim()
+            val symptom = binding.spSymptoms.selectedItem?.toString().orEmpty().trim()
 
             if (symptom.isEmpty() || symptom.equals("Síntomas", ignoreCase = true)) {
                 Toast.makeText(requireContext(), "Selecciona un síntoma", Toast.LENGTH_SHORT).show()
@@ -61,6 +62,15 @@ class NewAppointmentFragment : Fragment() {
     }
 
     private fun observeViewModel() {
+        viewModel.breeds.observe(viewLifecycleOwner) { breeds ->
+            val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, breeds)
+            binding.etRace.setAdapter(adapter)
+        }
+
+        viewModel.isLoadingBreeds.observe(viewLifecycleOwner) { loading ->
+            binding.progressBarBreeds.visibility = if (loading) View.VISIBLE else View.GONE
+        }
+
         viewModel.isLoading.observe(viewLifecycleOwner) { loading ->
             binding.progressBarSave.visibility = if (loading) View.VISIBLE else View.GONE
             binding.btnSaveCita.isEnabled = !loading

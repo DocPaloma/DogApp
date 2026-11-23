@@ -27,6 +27,29 @@ class NewAppointmentViewModel(application: Application) : AndroidViewModel(appli
     private val _errorMessage = MutableLiveData<String?>()
     val errorMessage: LiveData<String?> = _errorMessage
 
+    private val _breeds = MutableLiveData<List<String>>()
+    val breeds: LiveData<List<String>> = _breeds
+
+    private val _isLoadingBreeds = MutableLiveData(false)
+    val isLoadingBreeds: LiveData<Boolean> = _isLoadingBreeds
+
+    init {
+        loadBreeds()
+    }
+
+    private fun loadBreeds() {
+        _isLoadingBreeds.value = true
+        viewModelScope.launch {
+            try {
+                _breeds.value = repository.getBreeds()
+            } catch (e: Exception) {
+                _errorMessage.value = "No se pudo cargar la lista de razas"
+            } finally {
+                _isLoadingBreeds.value = false
+            }
+        }
+    }
+
     fun saveAppointment(
         petName: String,
         breed: String,

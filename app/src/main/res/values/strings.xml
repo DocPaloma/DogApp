@@ -10,4 +10,7 @@
     <string name="hint_phone">Número de teléfono</string>
     <string name="hint_race">Raza</string>
     <string name="save_cita">Guardar Cita</string>
+    <string-array name="symptom_options">
+        <item>Síntomas</item>
+    </string-array>
 </resources>
