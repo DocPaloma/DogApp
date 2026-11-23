@@ -38,4 +38,5 @@ Este archivo define las reglas de arquitectura, diseño e implementación obliga
 ## 3. Trabajo Colaborativo y Calidad de Código (RA-3 — 20%)
 - **Coordinación en Git/GitHub:** Trabajar por ramas de funcionalidad (`feature/*`), evitando modificar archivos compartidos de configuración (`build.gradle.kts`, `libs.versions.toml`, `themes.xml`) sin coordinar con el responsable de arquitectura base.
 - **Código limpio:** Escribir Kotlin y XML idiomático y legible, evitando comentarios obvios o redundantes.
-- **Documentación del proyecto:** Mantener actualizada la carpeta `docs/` (documentación técnica y de usabilidad) y `PROJECT_DOCUMENTATION.md`.
+- **Documentación del proyecto:** Cada cambio implementado (propio o integrado de compañeros en `main`) debe documentarse en `PROJECT_DOCUMENTATION.md` y en la carpeta `docs/` (documentación técnica y de usabilidad).
+- **Guía de estudio local:** Si existe el archivo local `STUDY_DEFENSE_GUIDE.md` (ignorado en `.gitignore`), actualízalo automáticamente en cada cambio registrando tanto lo implementado en la tarea actual como los cambios integrados del resto del equipo.
