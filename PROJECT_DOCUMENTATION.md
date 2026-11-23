@@ -61,7 +61,9 @@ com.example.dogapp/
 │   ├── login/
 │   │   └── LoginFragment.kt
 │   ├── home/
-│   │   └── (fragment_home_citas.xml, item_cita.xml)
+│   │   ├── HomeFragment.kt
+│   │   ├── HomeViewModel.kt
+│   │   └── AppointmentAdapter.kt
 │   ├── create/
 │   │   ├── NewAppointmentFragment.kt
 │   │   └── NewAppointmentViewModel.kt
@@ -75,7 +77,7 @@ com.example.dogapp/
 ### Estado Actual de Implementación
 - **Arquitectura Base, Navegación y Capa de Datos (`#7`, `#8`, `#9`, `#10`):** Configurados `MainActivity` (`AppCompatActivity`), `nav_graph.xml`, Room (`AppDatabase`, `AppointmentDao`, `AppointmentEntity`), Retrofit (`DogApiService`, `RetrofitClient`) y `AppointmentRepository`.
 - **HU 1.0 (Login):** Diseño XML (`fragment_login.xml`), animación Lottie (`fingerprint_anim.json`) y autenticación biométrica (`LoginFragment.kt`).
-- **HU 2.0 (Home):** Diseños XML (`fragment_home_citas.xml`, `item_cita.xml`) integrados en `main`.
+- **HU 2.0 (Home):** Diseños XML (`fragment_home_citas.xml`, `item_cita.xml`), `HomeViewModel`, `AppointmentAdapter` y `HomeFragment` conectados reactivamente a Room (`LiveData`).
 - **HU 3.0 (Nueva Cita):** Diseño XML (`fragment_add_cita.xml`), `NewAppointmentViewModel.kt` y `NewAppointmentFragment.kt` con consumo de imagen por raza y guardado en Room.
 - **HU 4.0 y HU 5.0:** Layouts y fragmentos base (`DetailAppointmentFragment.kt`, `EditAppointmentFragment.kt`) listos para conectar lógica.
 
