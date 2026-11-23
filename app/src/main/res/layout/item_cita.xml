@@ -24,7 +24,7 @@
         android:paddingEnd="14dp"
         android:paddingBottom="12dp">
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/ivFotoMascota"
             android:layout_width="68dp"
             android:layout_height="68dp"
@@ -33,7 +33,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppereanceOverlay="@style/ShapeAppereance.Material3.Corner.Full"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
             tools:src="@tools:sample/avatars"/>
 
         <TextView
