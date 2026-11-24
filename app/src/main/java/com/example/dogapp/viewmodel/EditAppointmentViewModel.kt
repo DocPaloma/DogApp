@@ -1,4 +1,4 @@
-package com.example.dogapp.view.edit
+package com.example.dogapp.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

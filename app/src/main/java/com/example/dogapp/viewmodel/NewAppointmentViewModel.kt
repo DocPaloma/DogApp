@@ -1,8 +1,9 @@
-package com.example.dogapp.view.create
+package com.example.dogapp.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.dogapp.data.local.AppDatabase
@@ -37,6 +38,40 @@ class NewAppointmentViewModel(application: Application) : AndroidViewModel(appli
         loadBreeds()
     }
 
+    fun isFormValid(
+        petName: String,
+        breed: String,
+        ownerName: String,
+        phone: String,
+        symptom: String
+    ): Boolean {
+        val cleanPetName = petName.trim()
+        val cleanBreed = breed.trim()
+        val cleanOwnerName = ownerName.trim()
+        val cleanPhone = phone.trim()
+        val cleanSymptom = symptom.trim()
+
+        if (cleanPetName.isEmpty() || cleanBreed.isEmpty() || cleanOwnerName.isEmpty() || cleanPhone.isEmpty()) {
+            _errorMessage.value = "Completa todos los campos obligatorios"
+            return false
+        }
+
+        if (cleanPhone.length < 7) {
+            _errorMessage.value = "Ingresa un teléfono válido"
+            return false
+        }
+
+        if (cleanSymptom.isEmpty() ||
+            cleanSymptom.equals("Síntomas", ignoreCase = true) ||
+            cleanSymptom.equals("Sintomas", ignoreCase = true)
+        ) {
+            _errorMessage.value = "Selecciona un síntoma"
+            return false
+        }
+
+        return true
+    }
+
     private fun loadBreeds() {
         _isLoadingBreeds.value = true
         viewModelScope.launch {
@@ -50,6 +85,8 @@ class NewAppointmentViewModel(application: Application) : AndroidViewModel(appli
         }
     }
 
+
+
     fun saveAppointment(
         petName: String,
         breed: String,
@@ -58,6 +95,7 @@ class NewAppointmentViewModel(application: Application) : AndroidViewModel(appli
         symptom: String
     ) {
         if (_isLoading.value == true) return
+        if (!isFormValid(petName, breed, ownerName, phone, symptom)) return
 
         _isLoading.value = true
         _errorMessage.value = null
