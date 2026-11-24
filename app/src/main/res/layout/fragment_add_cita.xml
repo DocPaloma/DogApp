@@ -57,10 +57,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/headerNuevaCita">
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:paddingStart="28dp"
             android:paddingTop="44dp"
             android:paddingEnd="28dp"
@@ -72,7 +73,8 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/hint_name">
+                android:hint="@string/hint_name"
+                android:orientation="vertical">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etNombreMascota"
@@ -80,7 +82,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/fredoka_regular"
                     android:inputType="textCapWords"
-                    android:maxLines="1"/>
+                    android:maxLines="1" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -131,7 +133,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/fredoka_regular"
                     android:inputType="textCapWords"
-                    android:maxLines="1"/>
+                    android:maxLines="1" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -150,7 +152,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/fredoka_regular"
                     android:inputType="phone"
-                    android:maxLines="1"/>
+                    android:maxLines="1" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -184,7 +186,7 @@
                 app:icon="@android:drawable/ic_menu_save"
                 app:iconGravity="textStart"
                 app:iconPadding="10dp"
-                app:iconTint="@color/white"/>
+                app:iconTint="@color/white" />
 
             <ProgressBar
                 android:id="@+id/progressBarSave"
