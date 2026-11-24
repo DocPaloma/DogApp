@@ -49,225 +49,166 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!-- CONTENIDO CON TARJETAS -->
-        <LinearLayout
+        <!-- ESPACIO PARA LA TARJETA DE IMAGEN SUPERPUESTA -->
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_marginTop="-30dp"
             android:paddingStart="20dp"
-            android:paddingTop="24dp"
-            android:paddingEnd="20dp"
-            android:paddingBottom="32dp">
+            android:paddingEnd="20dp">
 
-            <!-- TARJETA 1: INFORMACIÓN DE LA MASCOTA -->
+            <!-- TARJETA SUPERIOR: IMAGEN DE LA MASCOTA -->
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardPetImage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="4dp"
-                app:cardUseCompatPadding="true">
+                app:cardCornerRadius="20dp"
+                app:cardElevation="8dp"
+                app:cardUseCompatPadding="true"
+                android:layout_gravity="center_horizontal|top"
+                >
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="20dp">
+                    android:gravity="center"
+                    android:padding="24dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="🐾 Mascota"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/purple_500"
-                        android:fontFamily="@font/fredoka_bold"/>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="16dp"
-                        android:background="#E0E0E0"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Nombre"
-                        android:textSize="14sp"
-                        android:textColor="#757575"
-                        android:fontFamily="@font/fredoka_regular"/>
-
-                    <TextView
-                        android:id="@+id/tvPetName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="—"
-                        android:textSize="18sp"
-                        android:textColor="#212121"
-                        android:layout_marginTop="4dp"
-                        android:fontFamily="@font/fredoka_regular"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Raza"
-                        android:textSize="14sp"
-                        android:textColor="#757575"
-                        android:layout_marginTop="12dp"
-                        android:fontFamily="@font/fredoka_regular"/>
-
-                    <TextView
-                        android:id="@+id/tvPetBreed"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="—"
-                        android:textSize="18sp"
-                        android:textColor="#212121"
-                        android:layout_marginTop="4dp"
-                        android:fontFamily="@font/fredoka_regular"/>
+                    <ImageView
+                        android:id="@+id/ivPetPhoto"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:src="@drawable/ic_dog_head"
+                        android:scaleType="centerCrop"/>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- TARJETA 2: INFORMACIÓN DEL PROPIETARIO -->
-            <com.google.android.material.card.MaterialCardView
+        </FrameLayout>
+
+        <!-- TARJETA INFERIOR: INFORMACIÓN -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="-20dp"
+            android:layout_marginBottom="32dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="4dp"
-                app:cardUseCompatPadding="true">
+                android:orientation="vertical"
+                android:padding="20dp">
 
+                <!-- TURNO - Arriba derecha -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="20dp">
+                    android:gravity="end">
 
                     <TextView
+                        android:id="@+id/tvTurnNumber"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="👤 Propietario"
-                        android:textSize="20sp"
+                        android:text="#1"
+                        android:textSize="16sp"
                         android:textStyle="bold"
                         android:textColor="@color/purple_500"
                         android:fontFamily="@font/fredoka_bold"/>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="16dp"
-                        android:background="#E0E0E0"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Nombre"
-                        android:textSize="14sp"
-                        android:textColor="#757575"
-                        android:fontFamily="@font/fredoka_regular"/>
-
-                    <TextView
-                        android:id="@+id/tvOwnerName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="—"
-                        android:textSize="18sp"
-                        android:textColor="#212121"
-                        android:layout_marginTop="4dp"
-                        android:fontFamily="@font/fredoka_regular"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Teléfono"
-                        android:textSize="14sp"
-                        android:textColor="#757575"
-                        android:layout_marginTop="12dp"
-                        android:fontFamily="@font/fredoka_regular"/>
-
-                    <TextView
-                        android:id="@+id/tvOwnerPhone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="—"
-                        android:textSize="18sp"
-                        android:textColor="#212121"
-                        android:layout_marginTop="4dp"
-                        android:fontFamily="@font/fredoka_regular"/>
                 </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
 
-            <!-- TARJETA 3: INFORMACIÓN DE LA CITA -->
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="4dp"
-                app:cardUseCompatPadding="true">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <!-- RAZA -->
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="20dp">
+                    android:text="Raza"
+                    android:textSize="14sp"
+                    android:textColor="#757575"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/fredoka_regular"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="📋 Cita"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/purple_500"
-                        android:fontFamily="@font/fredoka_bold"/>
+                <TextView
+                    android:id="@+id/tvPetBreed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="—"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#212121"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/fredoka_regular"/>
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="16dp"
-                        android:background="#E0E0E0"/>
+                <!-- SÍNTOMAS -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Síntomas"
+                    android:textSize="14sp"
+                    android:textColor="#757575"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/fredoka_regular"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Síntomas reportados"
-                        android:textSize="14sp"
-                        android:textColor="#757575"
-                        android:fontFamily="@font/fredoka_regular"/>
+                <TextView
+                    android:id="@+id/tvSymptoms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="—"
+                    android:textSize="16sp"
+                    android:textColor="#212121"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/fredoka_regular"/>
 
-                    <TextView
-                        android:id="@+id/tvSymptoms"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="—"
-                        android:textSize="18sp"
-                        android:textColor="#212121"
-                        android:layout_marginTop="4dp"
-                        android:fontFamily="@font/fredoka_regular"/>
+                <!-- LÍNEA ROSADA -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:background="#F05861"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Fecha y hora"
-                        android:textSize="14sp"
-                        android:textColor="#757575"
-                        android:layout_marginTop="12dp"
-                        android:fontFamily="@font/fredoka_regular"/>
+                <!-- PROPIETARIO -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Propietario"
+                    android:textSize="14sp"
+                    android:textColor="#757575"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/fredoka_regular"/>
 
-                    <TextView
-                        android:id="@+id/tvDateTime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="—"
-                        android:textSize="18sp"
-                        android:textColor="#212121"
-                        android:layout_marginTop="4dp"
-                        android:fontFamily="@font/fredoka_regular"/>
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+                <TextView
+                    android:id="@+id/tvOwnerName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="—"
+                    android:textSize="16sp"
+                    android:textColor="#212121"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/fredoka_regular"/>
 
-        </LinearLayout>
+                <!-- TELÉFONO -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Teléfono"
+                    android:textSize="14sp"
+                    android:textColor="#757575"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/fredoka_regular"/>
+
+                <TextView
+                    android:id="@+id/tvOwnerPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="—"
+                    android:textSize="16sp"
+                    android:textColor="#212121"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/fredoka_regular"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
     </LinearLayout>
 </ScrollView>
