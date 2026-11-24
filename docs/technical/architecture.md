@@ -25,6 +25,11 @@ La aplicación implementa el patrón **Model-View-ViewModel (MVVM)** con una cap
   - `GET breed/{breed}/images/random` y `GET breed/{breed}/{subBreed}/images/random`: Obtiene una imagen aleatoria de la raza seleccionada.
   - `GET breeds/image/random`: Respaldo aleatorio si una raza no coincide exactamente.
 
+## 4. Navegación y Paso de Datos entre Pantallas
+- `nav_graph.xml` define el grafo de navegación con `loginFragment` como `startDestination` y `popUpTo` hacia `nav_graph` al ingresar a `homeFragment`.
+- `HomeFragment` envía la entidad `AppointmentEntity` (`Serializable`) dentro de un `Bundle` bajo la clave `"appointment"` hacia `DetailAppointmentFragment`.
+- `NewAppointmentViewModel` expone `breeds` (`LiveData<List<String>>`), `isLoadingBreeds`, `isLoading` y `appointmentSaved` para desacoplar completamente la UI de Retrofit y Room.
+
 ## 4. Navegación (Navigation Component)
 - **Single Activity:** `MainActivity` (`AppCompatActivity`) aloja un `NavHostFragment` (`activity_main.xml`) conectado a `res/navigation/nav_graph.xml`.
 - **Destino inicial:** `loginFragment`.
