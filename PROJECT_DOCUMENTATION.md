@@ -70,16 +70,18 @@ com.example.dogapp/
 │   ├── detail/
 │   │   └── DetailAppointmentFragment.kt
 │   └── edit/
-│       └── EditAppointmentFragment.kt
+│       ├── EditAppointmentFragment.kt
+│       └── EditAppointmentViewModel.kt
 └── MainActivity.kt
 ```
 
 ### Estado Actual de Implementación
 - **Arquitectura Base, Navegación y Capa de Datos (`#7`, `#8`, `#9`, `#10`):** Configurados `MainActivity` (`AppCompatActivity`), `nav_graph.xml`, Room (`AppDatabase`, `AppointmentDao`, `AppointmentEntity`), Retrofit (`DogApiService`, `RetrofitClient`) y `AppointmentRepository`.
-- **HU 1.0 (Login):** Diseño XML (`fragment_login.xml`), animación Lottie (`fingerprint_anim.json`) y autenticación biométrica (`LoginFragment.kt`).
-- **HU 2.0 (Home):** Diseños XML (`fragment_home_citas.xml`, `item_cita.xml`), `HomeViewModel`, `AppointmentAdapter` y `HomeFragment` conectados reactivamente a Room (`LiveData`). El FAB navega a Nueva Cita y cada tarjeta abre el Detalle enviando la cita como `Serializable` en el `Bundle` (clave `"appointment"`); el botón atrás de Home sale al escritorio sin volver al Login (`#19`).
-- **HU 3.0 (Nueva Cita):** Diseño XML (`fragment_add_cita.xml`), `NewAppointmentViewModel.kt` y `NewAppointmentFragment.kt` con consumo de imagen por raza y guardado en Room. El campo Raza es un `AutoCompleteTextView` que sugiere razas desde 2 letras con la lista de Dog CEO (`breeds/list/all`) cargada vía Retrofit en el ViewModel (`#23`).
-- **HU 4.0 y HU 5.0:** Layouts y fragmentos base (`DetailAppointmentFragment.kt`, `EditAppointmentFragment.kt`) listos para conectar lógica.
+- **HU 1.0 (Login):** Diseño XML (`fragment_login.xml`), animación Lottie (`fingerprint_anim.json`), autenticación biométrica (`LoginFragment.kt`) e ícono personalizado de la aplicación (`dogApp`).
+- **HU 2.0 (Home):** Diseños XML (`fragment_home_citas.xml`, `item_cita.xml`), `HomeViewModel`, `AppointmentAdapter` y `HomeFragment` conectados reactivamente a Room (`LiveData`). El FAB navega a Nueva Cita, cada tarjeta abre el Detalle enviando la cita como `Serializable` en el `Bundle` (clave `"appointment"`), y el botón atrás sale al escritorio (`OnBackPressedCallback`).
+- **HU 3.0 (Nueva Cita):** Diseño XML (`fragment_add_cita.xml`, `arrays.xml` con síntomas), `NewAppointmentViewModel.kt` y `NewAppointmentFragment.kt` con autocompletado de razas desde 2 letras (`breeds/list/all`), consumo de imagen por raza y guardado en Room.
+- **HU 4.0 (Detalle de la Cita):** Diseño XML completo (`fragment_detail_appointment.xml`) con tarjetas superpuestas, turno `#1`, raza, síntoma, línea rosada, propietario y teléfono; pendiente enlace de datos y FABs de eliminar/editar (`#29`).
+- **HU 5.0 (Editar Cita):** Diseño XML completo (`fragment_edit_appointment.xml`), validaciones y `AutoCompleteTextView` de raza (`view/edit/EditAppointmentFragment.kt`), `EditAppointmentViewModel.kt` y precarga de datos desde Room (`#31`); pendiente autocompletado desde Retrofit y actualización en Room (`#33`).
 
 ---
 
