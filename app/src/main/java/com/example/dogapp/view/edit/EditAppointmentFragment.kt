@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.dogapp.data.local.AppointmentEntity
 import com.example.dogapp.databinding.FragmentEditAppointmentBinding
+import com.example.dogapp.viewmodel.EditAppointmentViewModel
 
 class EditAppointmentFragment : Fragment() {
 

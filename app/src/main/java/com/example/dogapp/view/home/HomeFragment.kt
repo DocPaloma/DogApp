@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.dogapp.R
 import com.example.dogapp.data.local.AppointmentEntity
 import com.example.dogapp.databinding.FragmentHomeCitasBinding
+import com.example.dogapp.viewmodel.HomeViewModel
 
 class HomeFragment : Fragment() {
 
