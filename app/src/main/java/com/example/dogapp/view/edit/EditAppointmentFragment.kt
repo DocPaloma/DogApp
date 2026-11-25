@@ -6,10 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.dogapp.R
 import com.example.dogapp.data.local.AppointmentEntity
 import com.example.dogapp.databinding.FragmentEditAppointmentBinding
 import com.example.dogapp.viewmodel.EditAppointmentViewModel
@@ -21,10 +24,7 @@ class EditAppointmentFragment : Fragment() {
 
     private val viewModel: EditAppointmentViewModel by viewModels()
 
-    private val breeds = listOf(
-        "Labrador", "Bulldog", "Chihuahua", "Poodle",
-        "Golden Retriever", "Beagle", "Pug", "Yorkshire"
-    )
+    private var currentAppointment: AppointmentEntity? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,21 +38,11 @@ class EditAppointmentFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupBreedAutoComplete()
+        binding.actvBreedEdit.threshold = 2
         setupValidations()
         setupButtons()
         observeViewModel()
         loadInitialAppointment()
-    }
-
-    private fun setupBreedAutoComplete() {
-        val adapter = ArrayAdapter(
-            requireContext(),
-            android.R.layout.simple_dropdown_item_1line,
-            breeds
-        )
-        binding.actvBreedEdit.setAdapter(adapter)
-        binding.actvBreedEdit.threshold = 2
     }
 
     private fun setupValidations() {
@@ -63,6 +53,11 @@ class EditAppointmentFragment : Fragment() {
     }
 
     private fun validateFields() {
+        binding.btnUpdateAppointment.isEnabled =
+            viewModel.isLoading.value != true && areFieldsValid()
+    }
+
+    private fun areFieldsValid(): Boolean {
         val nameText = binding.etPetNameEdit.text.toString()
         val breedText = binding.actvBreedEdit.text.toString()
         val ownerText = binding.etOwnerNameEdit.text.toString()
@@ -71,9 +66,9 @@ class EditAppointmentFragment : Fragment() {
         val nameValid = nameText.length in 1..15
         val breedValid = breedText.isNotEmpty()
         val ownerValid = ownerText.length in 1..30
-        val phoneValid = phoneText.length in 7..10
+        val phoneValid = phoneText.length in 1..10
 
-        binding.btnUpdateAppointment.isEnabled = nameValid && breedValid && ownerValid && phoneValid
+        return nameValid && breedValid && ownerValid && phoneValid
     }
 
     private fun setupButtons() {
@@ -81,7 +76,15 @@ class EditAppointmentFragment : Fragment() {
             findNavController().navigateUp()
         }
         binding.btnUpdateAppointment.setOnClickListener {
-            findNavController().navigateUp()
+            currentAppointment?.let { original ->
+                viewModel.updateAppointment(
+                    original = original,
+                    petName = binding.etPetNameEdit.text.toString(),
+                    breed = binding.actvBreedEdit.text.toString(),
+                    ownerName = binding.etOwnerNameEdit.text.toString(),
+                    phone = binding.etPhoneEdit.text.toString()
+                )
+            }
         }
     }
 
@@ -89,6 +92,33 @@ class EditAppointmentFragment : Fragment() {
         viewModel.appointment.observe(viewLifecycleOwner) { cita ->
             if (cita != null) {
                 populateFields(cita)
+            }
+        }
+
+        viewModel.breeds.observe(viewLifecycleOwner) { breeds ->
+            val adapter = ArrayAdapter(
+                requireContext(),
+                android.R.layout.simple_dropdown_item_1line,
+                breeds
+            )
+            binding.actvBreedEdit.setAdapter(adapter)
+        }
+
+        viewModel.isLoading.observe(viewLifecycleOwner) { loading ->
+            binding.progressBarEdit.isVisible = loading
+            binding.btnUpdateAppointment.isEnabled = !loading && areFieldsValid()
+        }
+
+        viewModel.appointmentUpdated.observe(viewLifecycleOwner) { updated ->
+            if (updated) {
+                findNavController().navigate(R.id.action_editAppointmentFragment_to_homeFragment)
+            }
+        }
+
+        viewModel.errorMessage.observe(viewLifecycleOwner) { error ->
+            if (!error.isNullOrBlank()) {
+                Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
+                viewModel.onErrorHandled()
             }
         }
     }
@@ -109,6 +139,7 @@ class EditAppointmentFragment : Fragment() {
     }
 
     private fun populateFields(cita: AppointmentEntity) {
+        currentAppointment = cita
         binding.etPetNameEdit.setText(cita.petName)
         binding.actvBreedEdit.setText(cita.breed, false)
         binding.etOwnerNameEdit.setText(cita.ownerName)
