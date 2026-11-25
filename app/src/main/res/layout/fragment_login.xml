@@ -17,6 +17,7 @@
         android:adjustViewBounds="true"
         android:contentDescription="@string/cd_dog_login"
         android:scaleType="fitEnd"
+        android:src="@drawable/ic_dog_head"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent="0.72"
