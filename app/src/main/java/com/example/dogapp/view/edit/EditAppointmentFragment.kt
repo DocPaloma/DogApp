@@ -66,7 +66,7 @@ class EditAppointmentFragment : Fragment() {
         val nameValid = nameText.length in 1..15
         val breedValid = breedText.isNotEmpty()
         val ownerValid = ownerText.length in 1..30
-        val phoneValid = phoneText.length in 7..10
+        val phoneValid = phoneText.length in 1..10
 
         return nameValid && breedValid && ownerValid && phoneValid
     }
