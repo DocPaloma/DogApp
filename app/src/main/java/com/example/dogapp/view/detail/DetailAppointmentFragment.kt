@@ -15,6 +15,7 @@ import com.example.dogapp.R
 import com.example.dogapp.data.local.AppointmentEntity
 import com.example.dogapp.databinding.FragmentDetailAppointmentBinding
 import com.example.dogapp.viewmodel.DetailAppointmentViewModel
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class DetailAppointmentFragment : Fragment() {
 
@@ -62,7 +63,7 @@ class DetailAppointmentFragment : Fragment() {
         }
 
         binding.fabDeleteAppointment.setOnClickListener {
-            appointment?.let { viewModel.deleteAppointment(it.id) }
+            appointment?.let { confirmDelete(it) }
         }
 
         binding.fabEditAppointment.setOnClickListener {
@@ -74,6 +75,15 @@ class DetailAppointmentFragment : Fragment() {
                 bundle
             )
         }
+    }
+
+    private fun confirmDelete(cita: AppointmentEntity) {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Eliminar cita")
+            .setMessage("¿Seguro que deseas eliminar la cita de ${cita.petName}?")
+            .setNegativeButton("Cancelar", null)
+            .setPositiveButton("Eliminar") { _, _ -> viewModel.deleteAppointment(cita.id) }
+            .show()
     }
 
     private fun observadorViewModel() {

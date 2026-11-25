@@ -85,9 +85,9 @@
                 app:hintTextColor="@color/purple_500"
                 android:layout_marginBottom="24dp">
 
-                <AutoCompleteTextView
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                    style="@style/Widget.MaterialComponents.TextInputEditText.FilledBox"
                     android:id="@+id/actvBreedEdit"
-                    android:minHeight="48dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
