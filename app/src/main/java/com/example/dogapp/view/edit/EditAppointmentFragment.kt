@@ -58,10 +58,10 @@ class EditAppointmentFragment : Fragment() {
     }
 
     private fun areFieldsValid(): Boolean {
-        val nameText = binding.etPetNameEdit.text.toString()
-        val breedText = binding.actvBreedEdit.text.toString()
-        val ownerText = binding.etOwnerNameEdit.text.toString()
-        val phoneText = binding.etPhoneEdit.text.toString()
+        val nameText = binding.etPetNameEdit.text?.toString().orEmpty().trim()
+        val breedText = binding.actvBreedEdit.text?.toString().orEmpty().trim()
+        val ownerText = binding.etOwnerNameEdit.text?.toString().orEmpty().trim()
+        val phoneText = binding.etPhoneEdit.text?.toString().orEmpty().trim()
 
         val nameValid = nameText.length in 1..15
         val breedValid = breedText.isNotEmpty()
