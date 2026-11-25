@@ -21,8 +21,21 @@ class EditAppointmentViewModel(application: Application) : AndroidViewModel(appl
     private val _appointment = MutableLiveData<AppointmentEntity?>()
     val appointment: LiveData<AppointmentEntity?> = _appointment
 
+    private val _breeds = MutableLiveData<List<String>>()
+    val breeds: LiveData<List<String>> = _breeds
+
     private val _isLoading = MutableLiveData(false)
     val isLoading: LiveData<Boolean> = _isLoading
+
+    private val _appointmentUpdated = MutableLiveData(false)
+    val appointmentUpdated: LiveData<Boolean> = _appointmentUpdated
+
+    private val _errorMessage = MutableLiveData<String?>()
+    val errorMessage: LiveData<String?> = _errorMessage
+
+    init {
+        loadBreeds()
+    }
 
     fun loadAppointment(appointmentId: Int) {
         if (appointmentId <= 0) return
@@ -35,5 +48,57 @@ class EditAppointmentViewModel(application: Application) : AndroidViewModel(appl
                 _isLoading.value = false
             }
         }
+    }
+
+    private fun loadBreeds() {
+        viewModelScope.launch {
+            try {
+                _breeds.value = repository.getBreeds()
+            } catch (e: Exception) {
+                _errorMessage.value = "No se pudo cargar la lista de razas"
+            }
+        }
+    }
+
+    fun updateAppointment(
+        original: AppointmentEntity,
+        petName: String,
+        breed: String,
+        ownerName: String,
+        phone: String
+    ) {
+        if (_isLoading.value == true) return
+
+        _isLoading.value = true
+        _errorMessage.value = null
+
+        viewModelScope.launch {
+            try {
+                val cleanBreed = breed.trim()
+                val imageUrl = if (cleanBreed.equals(original.breed, ignoreCase = true)) {
+                    original.imageUrl
+                } else {
+                    repository.getBreedImageUrl(cleanBreed)
+                }
+                repository.updateAppointment(
+                    original.copy(
+                        petName = petName.trim(),
+                        breed = cleanBreed,
+                        ownerName = ownerName.trim(),
+                        phone = phone.trim(),
+                        imageUrl = imageUrl
+                    )
+                )
+                _appointmentUpdated.value = true
+            } catch (e: Exception) {
+                _errorMessage.value = "No se pudo actualizar la cita"
+            } finally {
+                _isLoading.value = false
+            }
+        }
+    }
+
+    fun onErrorHandled() {
+        _errorMessage.value = null
     }
 }
