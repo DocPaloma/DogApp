@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -31,8 +32,34 @@ class NewAppointmentFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupValidations()
         setupListeners()
         observeViewModel()
+        updateSaveButtonState()
+    }
+
+    private fun setupValidations() {
+        binding.etNombreMascota.doOnTextChanged { _, _, _, _ -> updateSaveButtonState() }
+        binding.etRace.doOnTextChanged { _, _, _, _ -> updateSaveButtonState() }
+        binding.etNombrePropietario.doOnTextChanged { _, _, _, _ -> updateSaveButtonState() }
+        binding.etPhone.doOnTextChanged { _, _, _, _ -> updateSaveButtonState() }
+    }
+
+    private fun areRequiredFieldsFilled(): Boolean {
+        val petName = binding.etNombreMascota.text?.toString().orEmpty().trim()
+        val breed = binding.etRace.text?.toString().orEmpty().trim()
+        val ownerName = binding.etNombrePropietario.text?.toString().orEmpty().trim()
+        val phone = binding.etPhone.text?.toString().orEmpty().trim()
+
+        return petName.isNotEmpty() &&
+            breed.isNotEmpty() &&
+            ownerName.isNotEmpty() &&
+            phone.isNotEmpty()
+    }
+
+    private fun updateSaveButtonState() {
+        val isSaving = viewModel.isLoading.value == true
+        binding.btnSaveCita.isEnabled = !isSaving && areRequiredFieldsFilled()
     }
 
     private fun setupListeners() {
@@ -74,7 +101,7 @@ class NewAppointmentFragment : Fragment() {
 
         viewModel.isLoading.observe(viewLifecycleOwner) { loading ->
             binding.progressBarSave.visibility = if (loading) View.VISIBLE else View.GONE
-            binding.btnSaveCita.isEnabled = !loading
+            updateSaveButtonState()
         }
 
         viewModel.appointmentSaved.observe(viewLifecycleOwner) { saved ->
