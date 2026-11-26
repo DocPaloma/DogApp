@@ -76,7 +76,7 @@ com.example.dogapp/
 ```
 
 ### Estado Actual de Implementación
-- **Arquitectura Base, Navegación y Capa de Datos (`#7`, `#8`, `#9`, `#10`):** Configurados `MainActivity` (`AppCompatActivity`), `nav_graph.xml`, Room (`AppDatabase`, `AppointmentDao`, `AppointmentEntity`), Retrofit (`DogApiService`, `RetrofitClient`) y `AppointmentRepository`.
+- **Arquitectura Base, Navegación y Capa de Datos (`#7`, `#8`, `#9`, `#10`):** Configurados `MainActivity` (`AppCompatActivity` con manejo de `WindowInsetsCompat.Type.systemBars()` para evitar solapamiento con barra de estado y navegación), `nav_graph.xml`, Room (`AppDatabase`, `AppointmentDao`, `AppointmentEntity`), Retrofit (`DogApiService`, `RetrofitClient`) y `AppointmentRepository`.
 - **HU 1.0 (Login):** Diseño XML (`fragment_login.xml`), animación Lottie (`fingerprint_anim.json`), autenticación biométrica (`LoginFragment.kt`) e ícono personalizado de la aplicación (`dogApp`).
 - **HU 2.0 (Home):** Diseños XML (`fragment_home_citas.xml`, `item_cita.xml`), `HomeViewModel`, `AppointmentAdapter` y `HomeFragment` conectados reactivamente a Room (`LiveData`). El FAB navega a Nueva Cita, cada tarjeta abre el Detalle enviando la cita como `Serializable` en el `Bundle` (clave `"appointment"`), y el botón atrás sale al escritorio (`OnBackPressedCallback`).
 - **HU 3.0 (Nueva Cita):** Diseño XML (`fragment_add_cita.xml`, `arrays.xml` con síntomas), `NewAppointmentViewModel.kt` y `NewAppointmentFragment.kt` con validaciones de longitud (`15`/`30`/`10` caracteres, teléfono solo numérico), botón `"Guardar Cita"` deshabilitado hasta diligenciar los 4 campos de texto, autocompletado de razas desde 2 letras (`breeds/list/all`), consumo de imagen por raza y guardado en Room.
