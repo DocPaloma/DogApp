@@ -13,7 +13,7 @@ La aplicación implementa el patrón **Model-View-ViewModel (MVVM)** con una cap
   - `petName`: `String` (máximo 15 caracteres en UI).
   - `breed`: `String`.
   - `ownerName`: `String` (máximo 30 caracteres en UI).
-  - `phone`: `String` (máximo 10 dígitos en UI).
+  - `phone`: `String` (de 7 a 10 dígitos en UI).
   - `symptom`: `String`.
   - `imageUrl`: `String` (URL obtenida de Dog CEO API).
 - **DAO (`AppointmentDao`):** Expone consultas reactivas (`LiveData`) para listar y observar por ID, además de operaciones `suspend` para insertar, actualizar y eliminar.
@@ -25,14 +25,11 @@ La aplicación implementa el patrón **Model-View-ViewModel (MVVM)** con una cap
   - `GET breed/{breed}/images/random` y `GET breed/{breed}/{subBreed}/images/random`: Obtiene una imagen aleatoria de la raza seleccionada.
   - `GET breeds/image/random`: Respaldo aleatorio si una raza no coincide exactamente.
 
-## 4. Navegación y Paso de Datos entre Pantallas
-- `nav_graph.xml` define el grafo de navegación con `loginFragment` como `startDestination` y `popUpTo` hacia `nav_graph` al ingresar a `homeFragment`.
-- `HomeFragment` envía la entidad `AppointmentEntity` (`Serializable`) dentro de un `Bundle` bajo la clave `"appointment"` hacia `DetailAppointmentFragment`.
-- `NewAppointmentViewModel` expone `breeds` (`LiveData<List<String>>`), `isLoadingBreeds`, `isLoading` y `appointmentSaved` para desacoplar completamente la UI de Retrofit y Room.
-
 ## 4. Navegación (Navigation Component)
-- **Single Activity:** `MainActivity` (`AppCompatActivity`) aloja un `NavHostFragment` (`activity_main.xml`) conectado a `res/navigation/nav_graph.xml`.
+- **Single Activity:** `MainActivity` (`AppCompatActivity`) aloja un `NavHostFragment` (`activity_main.xml`) conectado a `res/navigation/nav_graph.xml` y aplica los `WindowInsets` de las barras del sistema.
 - **Destino inicial:** `loginFragment`.
+- `HomeFragment` envía la entidad `AppointmentEntity` (`Serializable`) dentro de un `Bundle` bajo la clave `"appointment"` hacia `DetailAppointmentFragment`.
+- Los ViewModels están en `com.example.dogapp.viewmodel`. `NewAppointmentViewModel` expone `breeds` (`LiveData<List<String>>`), `isLoadingBreeds`, `isLoading` y `appointmentSaved` para desacoplar la UI de Retrofit y Room.
 
 | Acción | Origen → Destino | Comportamiento de la pila |
 |---|---|---|
@@ -51,12 +48,3 @@ findNavController().navigate(R.id.action_homeFragment_to_detailAppointmentFragme
 
 val appointment = arguments?.getSerializable("clave") as AppointmentEntity
 ```
-
-### Integración de ramas
-- **Orden de merge:** `feature/navigation` se creó a partir de `feature/login-screen` porque el grafo arranca en `LoginFragment`. Conviene mergear primero `feature/login-screen` en `main` y después `feature/navigation`.
-- **Clases que espera el grafo:** cada pantalla debe crearse con exactamente este nombre y paquete (o actualizar `nav_graph.xml` si se cambia):
-  - `com.example.dogapp.view.login.LoginFragment`
-  - `com.example.dogapp.view.home.HomeFragment` *(pendiente: rama de UI Home)*
-  - `com.example.dogapp.view.create.NewAppointmentFragment` *(pendiente: rama de UI Nueva Cita)*
-  - `com.example.dogapp.view.detail.DetailAppointmentFragment`
-  - `com.example.dogapp.view.edit.EditAppointmentFragment`
