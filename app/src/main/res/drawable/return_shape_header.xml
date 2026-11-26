@@ -9,7 +9,7 @@
     <path
         android:fillColor="@android:color/transparent"
         android:pathData="M15,5 L8,12 L15,19"
-        android:strokeColor="@color/red_d94"
+        android:strokeColor="@color/dog_pink"
         android:strokeWidth="2.5"
         android:strokeLineCap="round"
         android:strokeLineJoin="round"/>

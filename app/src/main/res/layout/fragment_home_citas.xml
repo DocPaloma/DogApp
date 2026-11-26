@@ -88,7 +88,7 @@
         android:contentDescription="Agregar cita"
         android:elevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:backgroundTint="#F05861"
+        app:backgroundTint="@color/dog_pink"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/ic_input_add"
         app:tint="@android:color/white"

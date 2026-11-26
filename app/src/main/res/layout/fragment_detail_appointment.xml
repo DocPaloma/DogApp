@@ -132,7 +132,7 @@
                         android:layout_height="1.5dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="16dp"
-                        android:background="#F05861" />
+                        android:background="@color/dog_pink" />
 
                     <!-- PROPIETARIO -->
                     <TextView
