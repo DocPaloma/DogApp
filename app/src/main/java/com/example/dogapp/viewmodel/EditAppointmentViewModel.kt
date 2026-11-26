@@ -68,6 +68,10 @@ class EditAppointmentViewModel(application: Application) : AndroidViewModel(appl
         phone: String
     ) {
         if (_isLoading.value == true) return
+        if (phone.trim().length < 7) {
+            _errorMessage.value = "Ingresa un teléfono válido"
+            return
+        }
 
         _isLoading.value = true
         _errorMessage.value = null

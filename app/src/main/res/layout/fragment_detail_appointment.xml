@@ -215,7 +215,7 @@
         android:layout_marginEnd="28dp"
         android:layout_marginBottom="24dp"
         android:contentDescription="Editar cita"
-        app:backgroundTint="@color/dog_dark_gray"
+        app:backgroundTint="@color/dog_dark_blue"
         app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Medium"
         app:srcCompat="@android:drawable/ic_menu_edit"
         app:tint="@color/white" />
