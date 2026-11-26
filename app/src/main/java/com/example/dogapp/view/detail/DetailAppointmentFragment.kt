@@ -49,8 +49,8 @@ class DetailAppointmentFragment : Fragment() {
         binding.tvTurnNumber.text = "#${cita.id}"
         binding.tvPetBreed.text = cita.breed
         binding.tvSymptoms.text = cita.symptom
-        binding.tvOwnerName.text = cita.ownerName
-        binding.tvOwnerPhone.text = cita.phone
+        binding.tvOwnerName.text = "Propietario: ${cita.ownerName}"
+        binding.tvOwnerPhone.text = "Teléfono: ${cita.phone}"
         binding.ivPetPhoto.load(cita.imageUrl) {
             placeholder(R.drawable.ic_dog_head)
             error(R.drawable.ic_dog_head)

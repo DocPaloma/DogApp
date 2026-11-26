@@ -184,6 +184,7 @@
                 android:paddingBottom="12dp"
                 android:enabled="false"
                 android:text="@string/save_cita"
+                android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 app:backgroundTint="#F05861"
